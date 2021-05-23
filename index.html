@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css" />
     <title>BlackJack</title>
 </head>
 <body>
@@ -25,23 +26,22 @@
             <div>
                 <button class="btn-lg btn-primary mr-2" id="blackjack-hit-button">HIT</button>
                 <button class="btn-lg btn-warning mr-2" id="blackjack-stand-button">STAND</button>
-                <button class="btn-lg btn-danger mr-2" id="blackjack-deal-button">DEAL</button>
+                <button class="btn-lg btn-danger" id="blackjack-deal-button">DEAL</button>
             </div>
-
-            <div class="flex-blackjack-row-3">
-                <table>
-                    <tr>
-                        <th>Wins</th>
-                        <th>Losses</th>
-                        <th>Draw</th>
-                    </tr>
-                    <tr>
-                        <td><span id="wins">0</span></td>
-                        <td><span id="losses">0</span></td>
-                        <td><span id="draws">0</span></td>
-                    </tr>
-                </table>
-            </div>
+        </div>
+        <div class="flex-blackjack-row-3">
+            <table>
+                <tr>
+                    <th>Wins</th>
+                    <th>Losses</th>
+                    <th>Draw</th>
+                </tr>
+                <tr>
+                    <td><span id="wins">0</span></td>
+                    <td><span id="losses">0</span></td>
+                    <td><span id="draws">0</span></td>
+                </tr>
+            </table>
         </div>
     </div>
 </body>
