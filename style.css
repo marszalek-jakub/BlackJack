@@ -29,4 +29,16 @@ table, th, td {
     padding: 5px;
 }
 
+.card {
+    width: 90px;
+    height: 125px;
+    margin:5px;
+}
+
+#your-cards {
+    border: none;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+}
 
