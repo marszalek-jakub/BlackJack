@@ -35,7 +35,7 @@ table, th, td {
     margin:5px;
 }
 
-#your-cards {
+#your-cards, #dealer-cards {
     border: none;
         display: flex;
         flex-wrap: wrap;

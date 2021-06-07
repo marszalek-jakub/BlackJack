@@ -1,6 +1,6 @@
 let blackJackGame = {
     "you": {scoreSpan: "#your-blackjack-result", "div": "#your-cards", "score": 0},
-    "dealer": {scoreSpan: "#dealer-blackjack-result", "div": "#dealer-box", "score": 0},
+    "dealer": {scoreSpan: "#dealer-blackjack-result", "div": "#dealer-cards", "score": 0},
     "cards":["2","3","4","5","6","7","8","9","10","J","K","Q","A"],
     "cardsMap": {"2":2,"3":3,"4":4,"5":5,"6":6,"7":7,"8":8,"9":9,"10":10,"J":10,"K":10,"Q":10,"A":[1,11]},
     "wins": 0,
@@ -17,15 +17,9 @@ const hitSound = new Audio("./sounds/swish.m4a");
 const winSound = new Audio("./sounds/cash.mp3");
 const lossSound = new Audio("./sounds/aww.mp3");
 
-    
-    
-document.querySelector("#blackjack-hit-button").addEventListener("click", blackJackHit);
-document.querySelector("#blackjack-stand-button").addEventListener("click", dealerLogic);
-document.querySelector("#blackjack-deal-button").addEventListener("click", blackJackDeal);
 
 
-
-function blackJackHit(){
+let blackJackHit = () => {
     if(blackJackGame["isStand"] === false) {
         let card = randomCard();
         showCard(card, YOU);
@@ -34,13 +28,13 @@ function blackJackHit(){
     }
 }
 
-function randomCard() {
+let randomCard = () => {
     let randomIndex = Math.floor(Math.random()*13);
     return blackJackGame["cards"][randomIndex];
 }
 
 
-function showCard(card, activePlayer) {
+let showCard = (card, activePlayer) => {
     if (activePlayer["score"] <= 21) {
         let cardImage = document.createElement("img");
         cardImage.src = `./images/${card}.png`;
@@ -50,7 +44,7 @@ function showCard(card, activePlayer) {
 }
 
 
-function blackJackDeal (){
+let blackJackDeal = () => {
 
     if(blackJackGame["turnsOver"] === true) {
         blackJackGame["isStand"] = false;
@@ -78,7 +72,7 @@ function blackJackDeal (){
 
 }
 
-function updateScore(card, activePlayer) {
+let updateScore = (card, activePlayer) => {
    if (card === "A") {
        //if AS
         if (activePlayer["score"] + blackJackGame["cardsMap"][card][1]<= 21){
@@ -92,7 +86,7 @@ function updateScore(card, activePlayer) {
    
 }
 
-function showScore(activePlayer){
+let showScore = activePlayer => {
     if (activePlayer["score"] > 21){
         document.querySelector(activePlayer["scoreSpan"]).textContent = "BUST";
         document.querySelector(activePlayer["scoreSpan"]).style.color = "red";
@@ -102,11 +96,11 @@ function showScore(activePlayer){
         }
 }
 
-function sleep(ms) {
+let sleep = ms => {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function dealerLogic() {
+let dealerLogic = async () => {
     blackJackGame["isStand"] = true; 
 
     while(DEALER["score"] < 16 && blackJackGame["isStand"] === true) {
@@ -114,7 +108,7 @@ async function dealerLogic() {
         showCard(card, DEALER);
         updateScore(card, DEALER);
         showScore(DEALER);
-        await sleep(1000);
+        await sleep(500);
     }
 
         blackJackGame["turnsOver"] = true;
@@ -125,7 +119,7 @@ async function dealerLogic() {
 
  //compute winner and return who jsut won
 // update table win, losses and draws
- function computeWinner(){
+ let computeWinner = () => {
      let winner;
 
      if (YOU["score"] <= 21) {
@@ -152,7 +146,7 @@ async function dealerLogic() {
 
  }
 
- function showResult(winner) {
+ let showResult = winner =>  {
     let message, messageColor;
     if (blackJackGame["turnsOver"] === true) {
         if (winner === YOU) {
@@ -175,3 +169,7 @@ async function dealerLogic() {
     }
 
  }
+
+ document.querySelector("#blackjack-hit-button").addEventListener("click", blackJackHit);
+document.querySelector("#blackjack-stand-button").addEventListener("click", dealerLogic);
+document.querySelector("#blackjack-deal-button").addEventListener("click", blackJackDeal);
